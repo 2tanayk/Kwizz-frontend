@@ -1,19 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import "./index.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 
+import Dialog from "../../components/dialog/Dialog.js";
+import { useRef } from "react/cjs/react.development";
+
 const Quiz = ({ questions }) => {
-  const answers={}
+  const [isError, setisError] = useState(false);
+  const [isUserSubmitting, setisUserSubmitting] = useState(false);
+
+  const answers = useRef({});
+  console.log('answers ref',answers.current)
   const onChoiceChanged = (e) => {
-    console.log("name:",e.target.name,"value:", e.target.value);
-    answers[e.target.name]=e.target.value;
-    console.log(answers);
+    // console.log("name:", e.target.name, "value:", e.target.value);
+    answers.current[e.target.name] = e.target.value;
+    // console.log(answers.current);
   };
+
+  function onQuizSubmit(e) {
+    e.preventDefault();
+    console.log("submitted answers", answers.current);
+    if (Object.keys(answers.current).length < questions.length) {
+      setisError(true);
+      return;
+    }
+    setisError(false);
+    setisUserSubmitting(true);
+  }
+
+  function onQuizSubmitConfirm() {
+    setisUserSubmitting(false)
+    console.log("quiz submitted");
+  }
+
+  function onQuizSubmitCancel() {
+    setisUserSubmitting(false)
+    console.log("cancelled!");
+  }
 
   return (
     <div style={container}>
-      <form>
+      <form onSubmit={onQuizSubmit}>
         {questions.map((question, index) => (
           <div style={questionContainer} key={index}>
             <div style={questionNoContainer}>
@@ -22,7 +50,7 @@ const Quiz = ({ questions }) => {
             <div>
               <QuestionSpan>{question.ques}</QuestionSpan>
 
-              <div style={choiceContainer} className="correct">
+              <div style={choiceContainer}>
                 <span>A.</span>
                 <RadioInput
                   id={`question${question.id}`}
@@ -32,7 +60,6 @@ const Quiz = ({ questions }) => {
                 />
                 <McqLabel for={`question${question.id}`}>
                   {question.options["A."]}
-                  <i class="fa-solid fa-check" style={checkStyle}></i>
                 </McqLabel>
               </div>
 
@@ -49,7 +76,7 @@ const Quiz = ({ questions }) => {
                 </McqLabel>
               </div>
 
-              <div style={choiceContainer} className="incorrect">
+              <div style={choiceContainer}>
                 <span>C.</span>
                 <RadioInput
                   id={`question${question.id}`}
@@ -59,7 +86,6 @@ const Quiz = ({ questions }) => {
                 />
                 <McqLabel for={`question${question.id}`}>
                   {question.options["C."]}
-                  <i class="fa-solid fa-xmark" style={crossStyle}></i>
                 </McqLabel>
               </div>
 
@@ -78,8 +104,22 @@ const Quiz = ({ questions }) => {
             </div>
           </div>
         ))}
+        {isError && (
+          <div style={errorContainer}>
+            Please answer all the MCQs(Multiple Choice Questions)
+          </div>
+        )}
         <input type="submit" style={submitBtn}></input>
       </form>
+      {isUserSubmitting && (
+        <Dialog
+          text="Do you want to submit the quiz?"
+          leftBtnText="Cancel"
+          rightBtnText="Ok"
+          onLeftBtnClick={onQuizSubmitCancel}
+          onRightBtnClick={onQuizSubmitConfirm}
+        />
+      )}
     </div>
   );
 };
@@ -104,8 +144,9 @@ const container = {
   marginTop: "80px",
   height: "100%",
   width: "100%",
-  justifyContent: "center",
+  alignItems: "center",
   display: "flex",
+  flexDirection: "column",
 };
 
 const questionNoContainer = {
@@ -139,15 +180,23 @@ const crossStyle = {
   fontSize: "20px",
 };
 
-const submitBtn={
-  margin:"10px",
-  padding:"10px", 
-  background:"#0f52ba", 
-  color:"#ffffff",
-  border:"0 none",
-  cursor:"pointer",
+const submitBtn = {
+  margin: "10px",
+  padding: "10px",
+  background: "#0f52ba",
+  color: "#ffffff",
+  border: "0 none",
+  cursor: "pointer",
   borderRadius: "5px",
-  fontSize:'15px',
-}
+  fontSize: "15px",
+};
+
+const errorContainer = {
+  margin: "10px",
+  marginLeft: "0px",
+  padding: "10px",
+  color: "#FF0000",
+  width: "50vw",
+};
 
 export default Quiz;
