@@ -66,7 +66,7 @@ function App() {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/scores" element={<YourScores />} />
-        <Route path="/your-quizes" element={<YourQuizes />} />
+        <Route path="/your-quizzes" element={<YourQuizes />} />
         <Route path="/quiz" element={<Quiz questions={questions} quesMap={quesMap} />} />
       </Routes>
     </Router>

@@ -19,3 +19,15 @@
   .hide{
       display: none;
   }
+  
+  .vr-fail {
+        border-left: 1px solid #FF5C5C;
+        height: 100px;
+    }
+
+    .vr-pass {
+        border-left: 1px solid #00D100;
+        height: 100px;
+    }
+  
+  

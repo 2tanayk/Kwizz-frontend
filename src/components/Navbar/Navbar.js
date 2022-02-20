@@ -18,8 +18,8 @@ const Navbar = () => {
           <NavLink to="/scores" activeStyle>
             Your Scores
           </NavLink>
-          <NavLink to="/your-quizes" activeStyle>
-            Your Quizes
+          <NavLink to="/your-quizzes" activeStyle>
+            Your Quizzes
           </NavLink>
         </NavMenu>
         <NavBtn>

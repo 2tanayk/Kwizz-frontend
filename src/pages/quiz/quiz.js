@@ -45,6 +45,7 @@ const Quiz = ({ questions, quesMap }) => {
         } else {
           sethasUserPassed(true);
         }
+        window.scrollTo(0,0)
       });
   }
 
@@ -183,16 +184,18 @@ const Quiz = ({ questions, quesMap }) => {
     <div style={container}>
       {console.log(isSpinnerVisible)}
       {isScoreOut && (
+        <div style={resultContainer} className={hasUserPassed ? "bg-result-pass" : "bg-result-fail"}>
         <div
-          style={resultContainer}
-          className={hasUserPassed ? "bg-result-pass" : "bg-result-fail"}
-        >
+          style={resultMessageContainer}>
           {hasUserPassed ? (
             <h2>Congratulations! You have made it through</h2>
           ) : (
             <h2>Oops! You didn't make it through</h2>
           )}
-          <p>You have scored {percentageScore}, you need 50% to pass</p>
+          <p>You have scored {percentageScore}, you needed 50% to pass</p>
+        </div>
+        <div className={hasUserPassed? "vr-pass":"vr-fail"}></div>
+        <a href="/" style={homeBtn}>Take More Quizzes</a>
         </div>
       )}
       {isSpinnerVisible && (
@@ -405,13 +408,34 @@ const errorContainer = {
 
 const resultContainer = {
   display: "flex",
+  width: "60%",
+  borderStyle: "double",
+  alignItems: "center",
+  justifyContent: "space-evenly",
+  borderWidth: "2px",
+  borderRadius: "15px",
+};
+
+const resultMessageContainer = {
+  display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  width: "60%",
-  borderStyle: "double",
-  borderWidth: "2px",
-  borderRadius: "15px",
+  width: "70%",
+};
+
+const homeBtn = {
+  margin: "10px",
+  padding: "10px",
+  background: "#0f52ba",
+  color: "#ffffff",
+  border: "0 none",
+  cursor: "pointer",
+  borderRadius: "5px",
+  fontSize: "15px",
+  textDecoration:"none",
+  textAlign:"center",
+  height:"50%"
 };
 
 export default Quiz;
