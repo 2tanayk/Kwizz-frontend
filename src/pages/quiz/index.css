@@ -5,3 +5,17 @@
 .incorrect{
     background-color: #FF8A8A;
 }
+
+.bg-result-pass{
+    background-color:#8AFF8A;
+    border-color: #00A300;
+  }
+
+  .bg-result-fail{
+    background-color:#FF8A8A;
+    border-color: #D10000;
+  }
+
+  .hide{
+      display: none;
+  }

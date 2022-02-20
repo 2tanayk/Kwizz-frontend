@@ -1,4 +1,7 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/home";
 import YourScores from "./pages/scores";
@@ -7,8 +10,73 @@ import Quiz from "./pages/quiz/quiz";
 import "./App.css";
 
 function App() {
-  var questions = [
-    {
+  const [questions, setQuestions] = useState([]);
+  const [quesMap, setquesMap] = useState({});
+
+  useEffect(() => {
+    console.log("App start");
+    console.log("Loading data...");
+
+    fetch("http://127.0.0.1:8000/api/quiz-questions/")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        const tempQues=[]
+
+        data.forEach((element) => {
+          const ques = {
+            id: "",
+            ques: "",
+            options: {
+              "A.": "",
+              "B.": "",
+              "C.": "",
+              "D.": "",
+            },
+          }
+
+          ques.id = element.quesId;
+          ques.ques = element.question;
+          ques.options["A."] = element.options.optionA;
+          ques.options["B."] = element.options.optionB;
+          ques.options["C."] = element.options.optionC;
+          ques.options["D."] = element.options.optionD;
+
+          quesMap[ques.id]={
+            quesId:element.quesId,
+            question:element.question,
+            options:element.options
+          }
+
+          tempQues.push(ques)
+        });
+
+        setQuestions([
+          ...tempQues
+        ])
+        setquesMap({
+          ...quesMap
+        })
+      });
+  }, []);
+
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/scores" element={<YourScores />} />
+        <Route path="/your-quizes" element={<YourQuizes />} />
+        <Route path="/quiz" element={<Quiz questions={questions} quesMap={quesMap} />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+
+/* 
+ {
       id: "1",
       ques: "In which decade was the American Institute of Electrical Engineers (AIEE) founded?",
       options: {
@@ -68,19 +136,4 @@ function App() {
         "D.": "Optical Sensor",
       },
     },
-  ];
-
-  return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/scores" element={<YourScores />} />
-        <Route path="/your-quizes" element={<YourQuizes />} />
-        <Route path="/quiz" element={<Quiz questions={questions} />} />
-      </Routes>
-    </Router>
-  );
-}
-
-export default App;
+*/
