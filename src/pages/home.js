@@ -5,13 +5,13 @@ const Home = () => {
     <div
       style={{
         display: 'flex',
-        justifyContent: 'Right',
-        alignItems: 'Right',
+        justifyContent: 'center',
+        alignItems: 'center',
         height: '100vh',
-        paddingTop:'100px'
+        paddingTop:'10px'
       }}
     >
-      <h1>GeeksforGeeks is a Computer Science portal for geeks.</h1>
+      <h1>Kwizz Home, still in development :)</h1>
     </div>
   );
 };
