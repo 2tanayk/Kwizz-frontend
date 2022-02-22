@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Udemy Coding Challenge 
+This repo contains the frontend of [Udemy's Web App Coding Challenge](https://github.com/udemy/coding-challenge) **as well as** the required **documentation** for the overall task.
+The API(backend code) has been pushed to this repo : https://github.com/2tanayk/Kwizz-backend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Problem Statement
+The problem statement was to develop a full-stack quiz taking web app which: presents the user with a quiz consisting of fixed no. of MCQs(Multiple Choice Questions) and displays the results after he/she submits it.
 
-## Available Scripts
+## Solution
 
-In the project directory, you can run:
+### Demonstration
+https://user-images.githubusercontent.com/60653277/155210559-8cfdc386-3872-47c5-9b64-c26defd0ad6a.mp4
 
-### `npm start`
+My solution to the challenge is a full stack one.
+### Front-End 
+- I have split my website into components(function based) as, this is considered to be a good practice in React due to reusability of components (all my components lie in **src/components**).
+- My webpages are a function based React component which lie in **src/pages** folder and named the files after the webpage they represent. 
+- The folder structure as you can make out from the above points makes it easier to find a particular webpage/component using smart editors like VS Code.
+- We can clearly see that we have divided our **website into pages** and **pages into components** rather than nesting everything into a component.Which makes our website more efficient as, a state change means only our affected component re-renders rather than the whole webpage.
+- I have used [React styled components](https://www.styled-components.com/) a popular npm package to style many of my components, I have used it because it gives a simple and convenient way creating components with a style, right inside of our Javascript code (CSS-in-JS) with the full power of CSS and we can re-use it wherever we want! 
+- Coming to state management I have done it entirely with react hooks like **useState** and **useEffect**. I have also used the **userRef** hook in cases where I wan't a variable values to survive the component re-render like in case of the variable that holds the user answers.One of the significant uses of the **useEffect** was: when passed with no dependencies(**[]**) it serves as **componentWillMount()** callback and here I did the quiz data fetching.
+- Finally I have also used the Javascript object in places where I needed to access data in **O(1)** (constant) time at the cost of some space. (like I have done after I fetched the answers from the server to show the correct and incorrect choices to the user). 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### Tech Stack
+As one was allowed to use frameworks, I decided to go with the Udemy's techstack of [Django](https://www.djangoproject.com/) and [React](https://reactjs.org/) (I did not use any state management libraries like Redux,MobX etc. because it seemed to be unnecessary for a small task). <br/>
+I also decided to use [DRF(Django Rest Framework)](https://www.django-rest-framework.org/) to build an API out of my backend since it seemed to be really popular and had a lot of backing from the dev. community!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
