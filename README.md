@@ -22,6 +22,14 @@ My solution to the challenge is a full stack one.
 - Finally I have also used the Javascript object in places where I needed to access data in **O(1)** (constant) time at the cost of some space(like I have done after I fetched the answers from the server to show the correct and incorrect choices to the user).**This is important as we want to load the answers quickly and not depend on the no. of questions in the quiz**.
 
 ### Back-End
+- On the backend I have used Django which follows the **MVT** design pattern(I really haven't used any templates as our aim was to build an API for our frontend and not to serve files/data from the django app).
+- All the tables in my [SQLite](https://www.sqlite.org/index.html) are represented by a model which resides in the django app's **models.py** file.The API endpoints are exposed via django views, which reside in the **views.py** file (inside the django app) and the api routes are set by the **urls.py** also inside the Django app. Most of the methods inside the views.py file are decorated by a **@api_view()** from the DRF(Djano Rest Framework) because we intend to serialize the output to JSON, which is consumed by our front end.Our serializers are stored in **serializers.py** in the django app.
+- The API only allows calls from our frontend and all other origins will be blacklisted because of [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) issues. My frontend is white listed because I have explicitly specified so using the [django-cors-headers](https://pypi.org/project/django-cors-headers/) package.Hence our backend is secure.
+- A quiz question is represented by a **Question** model which holds a One-to-One relation with **Answer** and **Options** models which represent answers and options respectively. We also have a **SubmittedAnswer** model which represents the answer submitted by the user.
+- At 00:09 in the attached video, we can see that I have defined endpoints to fetch all quiz questions, submit answers, see user's submissions, view quiz answers and view the user's scores.
+- While serializing the data for the front-end, I have ensured that answers don't end up on the client before the user submits the quiz, by defining different serializers.
+- I have also used the concept of nested serializers while sending the quiz questions to the front-end and also while getting answers from it. 
+
 
 
 
