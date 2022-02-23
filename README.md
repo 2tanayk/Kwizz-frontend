@@ -16,9 +16,10 @@ My solution to the challenge is a full stack one.
 - My webpages are a function based React component which lie in **src/pages** folder and named the files after the webpage they represent. 
 - The folder structure as you can make out from the above points makes it easier to find a particular webpage/component using smart editors like VS Code.
 - We can clearly see that we have divided our **website into pages** and **pages into components** rather than nesting everything into a component.Which makes our website more efficient as, a state change means only our affected component re-renders rather than the whole webpage.
-- I have used [React styled components](https://www.styled-components.com/) a popular npm package to style many of my components, I have used it because it gives a simple and convenient way creating components with a style, right inside of our Javascript code (CSS-in-JS) with the full power of CSS and we can re-use it wherever we want! 
+- I have used [React styled components](https://www.styled-components.com/), a popular npm package to style many of my components. I have used it because it gives a simple and convenient way creating components with a style, right inside of our Javascript code (CSS-in-JS) with the full power of CSS and we can re-use it wherever we want! 
 - Coming to state management I have done it entirely with react hooks like **useState** and **useEffect**. I have also used the **userRef** hook in cases where I wan't a variable values to survive the component re-render like in case of the variable that holds the user answers.One of the significant uses of the **useEffect** was: when passed with no dependencies(**[]**) it serves as **componentWillMount()** callback and here I did the quiz data fetching.
-- Finally I have also used the Javascript object in places where I needed to access data in **O(1)** (constant) time at the cost of some space. (like I have done after I fetched the answers from the server to show the correct and incorrect choices to the user). 
+- I have also added custom validation to the quiz which is actually a **Form**, hence a user has to attempt all the questions in order to submit the quiz
+- Finally I have also used the Javascript object in places where I needed to access data in **O(1)** (constant) time at the cost of some space(like I have done after I fetched the answers from the server to show the correct and incorrect choices to the user).**This is important as we want to load the answers quickly and not depend on the no. of questions in the quiz**.
 
 ### Back-End
 
