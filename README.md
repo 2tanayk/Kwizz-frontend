@@ -10,6 +10,10 @@ The problem statement was to develop a full-stack quiz taking web app which: pre
 ### Demonstration
 https://user-images.githubusercontent.com/60653277/155210559-8cfdc386-3872-47c5-9b64-c26defd0ad6a.mp4
 
+### Tech Stack
+As one was allowed to use frameworks, I decided to go with the Udemy's techstack of [Django](https://www.djangoproject.com/) and [React](https://reactjs.org/) (I did not use any state management libraries like Redux,MobX etc. because I had really less time in hand). <br/>
+I also decided to use [DRF(Django Rest Framework)](https://www.django-rest-framework.org/) to build an API out of my backend since it seemed to be really popular and had a lot of backing from the dev. community!
+
 My solution to the challenge is a full stack one.
 ### Front-End 
 - I have split my website into components(function based) as, this is considered to be a good practice in React due to reusability of components (all my components lie in **src/components**).
@@ -45,8 +49,6 @@ My solution to the challenge is a full stack one.
 - The database in use currently is SQLite which isn't a very good choice, I would like to switch from this to something like **PostgreSQL**.
 - Finally a key concept in **DBMS** is database **normalization**, so I would definitely like to normalize all the tables to **3NF**.
 
-### Tech Stack
-As one was allowed to use frameworks, I decided to go with the Udemy's techstack of [Django](https://www.djangoproject.com/) and [React](https://reactjs.org/) (I did not use any state management libraries like Redux,MobX etc. because I had really less time in hand). <br/>
-I also decided to use [DRF(Django Rest Framework)](https://www.django-rest-framework.org/) to build an API out of my backend since it seemed to be really popular and had a lot of backing from the dev. community!
+
 
 
