@@ -14,7 +14,7 @@ https://user-images.githubusercontent.com/60653277/155210559-8cfdc386-3872-47c5-
 As one was allowed to use frameworks, I decided to go with the Udemy's techstack of [Django](https://www.djangoproject.com/) and [React](https://reactjs.org/) (I did not use any state management libraries like Redux,MobX etc. because I had really less time in hand). <br/>
 I also decided to use [DRF(Django Rest Framework)](https://www.django-rest-framework.org/) to build an API out of my backend since it seemed to be really popular and had a lot of backing from the dev. community!
 
-My solution to the challenge is a full stack one.
+My solution to the challenge is a full stack one:
 ### Front-End 
 - I have split my website into components(function based) as, this is considered to be a good practice in React due to reusability of components (all my components lie in **src/components**).
 - My webpages are a function based React component which lie in **src/pages** folder and named the files after the webpage they represent. 
