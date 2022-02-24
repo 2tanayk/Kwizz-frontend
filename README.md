@@ -30,8 +30,14 @@ My solution to the challenge is a full stack one.
 - While serializing the data for the front-end, I have ensured that answers don't end up on the client before the user submits the quiz, by defining different serializers.
 - I have also used the concept of nested serializers while sending the quiz questions to the front-end and also while getting answers from it. 
 
-
-
+## Possible Improvements
+### Front-End
+-  Currently, I believe that the front-end styling (CSS) is very inconsistently done, I have resorted to internal CSS at many places. If I were given extra time on this project, I would move all my styles to the **index.css** file as a class based style as it is much more organized and recommended in cases where styles are static. React docs. also states that **style** is used by developers when they need dynamic styling and static ones are mostly done using classes. 
+-  Further the project should **either** use and **React styled components** or **plain CSS**, as using both can cause a lot of confusion to the developers especially, while bug fixing.
+-  Although I tried to split the website into several components but eventually due to a lack of time there has **been a lot of component nesting inside the quiz page**, which causes an expensive re-render of the whole page even at minute state changes and also makes our code susceptible to state related bugs.
+-  Further coming to state management, I would have defintely used Redux,MobX or some other state management library if there was more time available.(I had not anticipated state management to get this messy :()
+-  I have passed the quiz data(state) twice to the **/quiz** route i.e : **questions** an array containing all quiz data and **quesMap** an object with question data mapped to the quesId, this is unecessary wastage of space and only using the **quesMap** would have sufficed, I realised this later and would like to improve upon this.
+- Finally the website is also not totally responsive, I would certainly invest time writing **Media queries** to do so!
 
 ### Tech Stack
 As one was allowed to use frameworks, I decided to go with the Udemy's techstack of [Django](https://www.djangoproject.com/) and [React](https://reactjs.org/) (I did not use any state management libraries like Redux,MobX etc. because it seemed to be unnecessary for a small task). <br/>
