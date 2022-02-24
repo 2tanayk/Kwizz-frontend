@@ -40,7 +40,7 @@ My solution to the challenge is a full stack one.
 - Finally the website is also not totally responsive, I would certainly invest time writing **Media queries** to do so!
 
 ### Tech Stack
-As one was allowed to use frameworks, I decided to go with the Udemy's techstack of [Django](https://www.djangoproject.com/) and [React](https://reactjs.org/) (I did not use any state management libraries like Redux,MobX etc. because it seemed to be unnecessary for a small task). <br/>
+As one was allowed to use frameworks, I decided to go with the Udemy's techstack of [Django](https://www.djangoproject.com/) and [React](https://reactjs.org/) (I did not use any state management libraries like Redux,MobX etc. because I had really less time in hand). <br/>
 I also decided to use [DRF(Django Rest Framework)](https://www.django-rest-framework.org/) to build an API out of my backend since it seemed to be really popular and had a lot of backing from the dev. community!
 
 
