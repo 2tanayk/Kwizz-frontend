@@ -39,6 +39,12 @@ My solution to the challenge is a full stack one.
 -  I have passed the quiz data(state) twice to the **/quiz** route i.e : **questions** an array containing all quiz data and **quesMap** an object with question data mapped to the quesId, this is unecessary wastage of space and only using the **quesMap** would have sufficed, I realised this later and would like to improve upon this.
 - Finally the website is not fully responsive, I would certainly invest time writing **Media queries** to do so!
 
+### Back-End
+- Currently to submit answers to a quiz the front-end has to send each and every **question** and **options**(which are not required to return a user's results) for a question apart from the **quesId** and **answer**. Also it makes the handling of the POST request complicated on the backend as it requires a **custom nested serializer**. So this is something that adds to the overall complexity of development and I could improve upon.
+- Also on the backend, I haven't taken enough time out to test various scenarios that could arise while the website is in production, so all cases of error/exception handling has not been done. I would definitely like to spend time and improve upon this.
+- The database in use currently is SQLite which isn't a very good choice, I would like to switch from this to something like **PostgreSQL**.
+- Finally a key concept in **DBMS** is database **normalization**, so I would definitely like to normalize all the tables to **3NF**.
+
 ### Tech Stack
 As one was allowed to use frameworks, I decided to go with the Udemy's techstack of [Django](https://www.djangoproject.com/) and [React](https://reactjs.org/) (I did not use any state management libraries like Redux,MobX etc. because I had really less time in hand). <br/>
 I also decided to use [DRF(Django Rest Framework)](https://www.django-rest-framework.org/) to build an API out of my backend since it seemed to be really popular and had a lot of backing from the dev. community!
