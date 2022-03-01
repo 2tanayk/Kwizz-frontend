@@ -14,6 +14,7 @@ const Quiz = ({ questions, quesMap }) => {
   const [hasUserPassed, sethasUserPassed] = useState(true);
   const [percentageScore, setpercentageScore] = useState("00.00%");
   const [areAnswersOut, setareAnswersOut] = useState(false);
+  const [hasUserSubmitted, sethasUserSubmitted] = useState(false);
 
   const answers = useRef({});
 
@@ -30,11 +31,17 @@ const Quiz = ({ questions, quesMap }) => {
     }
   }, [questions.length]);
 
+  useEffect(()=>{
+    if(areAnswersOut){
+      sethasUserSubmitted(false)
+    }
+  },[areAnswersOut])
+
   console.log("answers ref", answers.current);
 
   function fetchResult() {
     console.log("fetching your score...");
-    fetch("http://127.0.0.1:8000/api/score/")
+    fetch("https://kwizz-backend.herokuapp.com/api/score/")
       .then((response) => response.json())
       .then((data) => {
         console.log("score data", data);
@@ -52,7 +59,7 @@ const Quiz = ({ questions, quesMap }) => {
   function fetchAnswers() {
     console.log("fetching answers...");
 
-    fetch("http://127.0.0.1:8000/api/answers/")
+    fetch("https://kwizz-backend.herokuapp.com/api/answers/")
       .then((response) => response.json())
       .then((data) => {
         ansMap.current = {};
@@ -101,6 +108,7 @@ const Quiz = ({ questions, quesMap }) => {
 
   function onQuizSubmitConfirm() {
     setisUserSubmitting(false);
+    sethasUserSubmitted(true);
     console.log("quiz submitted");
     console.log("Submitted answers", answers.current);
 
@@ -121,7 +129,7 @@ const Quiz = ({ questions, quesMap }) => {
 
     console.log("post data", postDataArr);
 
-    fetch("http://127.0.0.1:8000/api/submit-answers/", {
+    fetch("https://kwizz-backend.herokuapp.com/api/submit-answers/", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -182,7 +190,7 @@ const Quiz = ({ questions, quesMap }) => {
 
   return (
     <div style={container}>
-      {console.log(isSpinnerVisible)}
+      {hasUserSubmitted && <Oval color="#3980ef" wrapperStyle={resultsSpinner} secondaryColor="#71a4f4" height={80} width={80} />}
       {isScoreOut && (
         <div style={resultContainer} className={hasUserPassed ? "bg-result-pass" : "bg-result-fail"}>
         <div
@@ -326,6 +334,7 @@ const Quiz = ({ questions, quesMap }) => {
           onRightBtnClick={onQuizSubmitConfirm}
         />
       )}
+      {hasUserSubmitted && <div className="confirm-bg"></div>}
     </div>
   );
 };
@@ -436,6 +445,12 @@ const homeBtn = {
   textDecoration:"none",
   textAlign:"center",
   height:"50%"
+};
+
+const resultsSpinner={
+  position:"fixed",
+  bottom: "50%",
+  right: "50%"
 };
 
 export default Quiz;

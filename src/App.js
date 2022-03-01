@@ -17,7 +17,7 @@ function App() {
     console.log("App start");
     console.log("Loading data...");
 
-    fetch("http://127.0.0.1:8000/api/quiz-questions/")
+    fetch("https://kwizz-backend.herokuapp.com/api/quiz-questions/")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
